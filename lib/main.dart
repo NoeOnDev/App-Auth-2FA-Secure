@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
-import 'screens/2fa_screen.dart';
+import 'screens/two_fa_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +20,11 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
+        '/2fa': (context) {
+          final args = ModalRoute.of(context)!.settings.arguments as int;
+          return TwoFAScreen(userId: args);
+        },
         '/': (context) => const LoginScreen(),
-        '/2fa': (context) => const TwoFAScreen(),
         '/home': (context) => const HomeScreen(),
       },
     );

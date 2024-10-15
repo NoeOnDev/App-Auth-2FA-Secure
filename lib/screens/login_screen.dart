@@ -25,7 +25,12 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
 
       if (result != null) {
-        Navigator.pushReplacementNamed(context, '/2fa');
+        int userId = result['userId'];
+        Navigator.pushReplacementNamed(
+          context,
+          '/2fa',
+          arguments: userId,
+        );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Invalid credentials')),

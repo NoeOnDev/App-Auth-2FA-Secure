@@ -23,4 +23,20 @@ class AuthService {
       return null;
     }
   }
+
+  Future<bool> verify2FACode(int userId, String code) async {
+    final url = Uri.parse('$baseUrl/verify-2fa');
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'userId': userId,
+        'code': code,
+      }),
+    );
+
+    return response.statusCode == 200;
+  }
 }
